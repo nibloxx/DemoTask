@@ -16,7 +16,7 @@ function MenuToggleButton({ isOpen, onClick }) {
       aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
       aria-expanded={isOpen}
       onClick={onClick}
-      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-hair bg-bone text-ink transition-colors hover:border-ink md:hidden"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-hair text-ink transition-colors hover:border-ink md:hidden"
     >
       <span className="relative block h-3.5 w-5">
         <span
