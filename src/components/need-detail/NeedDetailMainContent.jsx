@@ -102,9 +102,11 @@ function buildHospital(need) {
 	};
 }
 
-function SectionWrap({ eyebrow, title, children }) {
+function SectionWrap({ eyebrow, title, children, hasBorder = true }) {
 	return (
-		<section className='border-t border-hair pt-[60px] first:border-t-0 first:pt-0'>
+		<section
+			className={`${hasBorder ? 'border-t border-hair' : ''} pt-[30px] first:border-t-0 first:pt-0`}
+		>
 			<p className='mb-5 font-mono text-[13px] uppercase tracking-[0.16em] text-mute'>
 				{eyebrow}
 			</p>
@@ -142,7 +144,7 @@ function BudgetList({ items, totalAmount }) {
 				</div>
 			))}
 
-			<div className='grid grid-cols-1 gap-4 border-t-[1.5px] border-ink py-6 md:grid-cols-[1fr_auto] md:items-baseline'>
+			<div className='grid grid-cols-[1fr_auto] items-baseline gap-3 border-t-[1.5px] border-ink py-6'>
 				<div className='font-fraunces text-[21px] text-ink'>Total</div>
 				<div className='text-right font-fraunces text-[26px] text-terra'>
 					{formatCurrency(totalAmount)}
@@ -188,11 +190,11 @@ function Timeline({ items }) {
 
 function Updates({ items }) {
 	return (
-		<div className='mt-7'>
+		<div className='mt-7 pb-[30px]'>
 			{items.map((update, index) => (
 				<article
 					key={`${update.date}-${update.title}`}
-					className={`py-7 ${index < items.length - 1 ? 'border-b border-hair-soft' : ''}`}
+					className={`pt-7 pb-4 ${index < items.length - 1 ? 'border-b border-hair-soft' : ''}`}
 				>
 					<div className='mb-3 font-mono text-[13px] uppercase tracking-[0.1em] text-mute'>
 						{update.date}
@@ -230,7 +232,7 @@ function Updates({ items }) {
 
 			<Link
 				href='#'
-				className='mt-6 inline-block font-mono text-[13px] uppercase tracking-[0.15em] text-terra transition-colors hover:text-terra-deep'
+				className='inline-block font-mono text-[13px] uppercase tracking-[0.15em] text-terra transition-colors hover:text-terra-deep'
 			>
 				All updates -&gt;
 			</Link>
@@ -245,7 +247,7 @@ export default function NeedDetailMainContent({ need }) {
 	const hospital = buildHospital(need);
 
 	return (
-		<div className='space-y-[40px]'>
+		<div className=''>
 			<SectionWrap eyebrow='Why this'>
 				<p className='mb-7 max-w-[48ch] font-fraunces text-2xl font-medium leading-[1.4] text-ink'>
 					{need.hospital} identified {need.title.toLowerCase()} as one
@@ -285,6 +287,7 @@ export default function NeedDetailMainContent({ need }) {
 			<SectionWrap
 				eyebrow='Updates from the field'
 				title='What the hospital is telling us.'
+				hasBorder={false}
 			>
 				<Updates items={updates} />
 			</SectionWrap>

@@ -14,12 +14,14 @@ export default function NeedDetailPage({ need }) {
 
 			<Container>
 				<div className='grid gap-12 py-12 md:py-16 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-[72px] lg:py-[72px]'>
-					<div>
+					<div className='order-2 lg:order-1 space-y-[30px]'>
 						<NeedDetailMainContent need={need} />
 						<NeedDetailFaq />
 					</div>
 
-					<NeedDetailDonateCard need={need} />
+					<div className='order-1 lg:order-2'>
+						<NeedDetailDonateCard need={need} />
+					</div>
 				</div>
 			</Container>
 

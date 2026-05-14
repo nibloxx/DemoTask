@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,6 +15,15 @@ function formatCurrency(value) {
 export default function NeedCard({ need }) {
   const progress = Math.min(Math.round((need.raised / need.goal) * 100), 100);
   const isUrgent = Boolean(need.urgentLabel);
+  const [animatedProgress, setAnimatedProgress] = useState(0);
+
+  useEffect(() => {
+    const frameId = requestAnimationFrame(() => {
+      setAnimatedProgress(progress);
+    });
+
+    return () => cancelAnimationFrame(frameId);
+  }, [progress]);
 
   return (
     <Link href={`/needs/${need.id}`} className="group block h-full">
@@ -63,10 +75,10 @@ export default function NeedCard({ need }) {
 
         <div className="h-[3px] overflow-hidden rounded-full bg-hair">
           <div
-            className={`h-full rounded-full transition-all duration-500 group-hover:w-full ${
+            className={`h-full rounded-full transition-[width] duration-1000 ease-out ${
               isUrgent ? "bg-terra" : "bg-moss"
             }`}
-            style={{ width: `${progress}%` }}
+            style={{ width: `${animatedProgress}%` }}
           />
         </div>
       </article>

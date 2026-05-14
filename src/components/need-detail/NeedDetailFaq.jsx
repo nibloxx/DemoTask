@@ -15,7 +15,7 @@ export default function NeedDetailFaq() {
 	}
 
 	return (
-		<section className='border-t border-hair pt-[60px]'>
+		<section className='border-t border-hair pt-[30px]'>
 			<p className='mb-5 font-mono text-[13px] uppercase tracking-[0.16em] text-mute'>
 				Common questions
 			</p>
