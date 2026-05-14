@@ -42,6 +42,89 @@ export const sortOptions = [
 	{ id: 'largest-goal', label: 'Largest goal' },
 ];
 
+export const donationPresetAmounts = [25, 50, 100, 250, 500, 1000];
+
+export const defaultDonationAmount = 100;
+
+export const donationPromises = [
+	{
+		strong: '100% to the project.',
+		text: 'No fees skimmed.',
+	},
+	{
+		strong: 'Tax-deductible',
+		text: 'through Giving Tree Projects, 501(c)(3).',
+	},
+	{
+		strong: 'Funds release on milestones,',
+		text: 'not in one block.',
+	},
+	{
+		strong: "You'll see it through.",
+		text: 'Reports at every stage.',
+	},
+];
+
+export const needDetailFaqItems = [
+	{
+		question: 'What if it does not reach goal?',
+		answer:
+			"If a need times out without full funding, donors are given options to redirect their gift, support the hospital's general fund, or request a refund.",
+		open: true,
+	},
+	{
+		question: 'What if it overshoots?',
+		answer:
+			"Anything raised beyond goal can be directed to the hospital's general fund with donor consent, or redirected elsewhere according to the giving flow.",
+	},
+	{
+		question: 'When is my gift tax-deductible?',
+		answer:
+			'At the moment you give. Donors receive a receipt from the sponsoring 501(c)(3) for the full amount of the gift.',
+	},
+	{
+		question: 'How do I know it actually got there?',
+		answer:
+			'Each disbursement triggers updates, documentation, and a final reconciliation so donors can track progress through project completion.',
+	},
+];
+
+const constructionBudgetTemplate = [
+	{ name: 'Core materials', note: 'Primary build materials and fixtures', percent: 56 },
+	{ name: 'Site labor', note: 'Local contractor team and supervision', percent: 17 },
+	{ name: 'Electrical and systems', note: 'Panels, wiring, and commissioning', percent: 12 },
+	{ name: 'Freight and logistics', note: 'Regional transport and customs handling', percent: 7 },
+	{ name: 'Training and handoff', note: 'Staff onboarding and maintenance notes', percent: 4 },
+	{ name: 'Contingency', note: 'Reserved for cost movement and site surprises', percent: 4 },
+];
+
+const equipmentBudgetTemplate = [
+	{ name: 'Equipment procurement', note: 'Quoted unit cost from approved vendor', percent: 61 },
+	{ name: 'Shipping and customs', note: 'Regional freight, taxes, and clearance', percent: 12 },
+	{ name: 'Installation', note: 'Biomedical setup and calibration', percent: 12 },
+	{ name: 'Consumables', note: 'Starter kits, accessories, and spares', percent: 7 },
+	{ name: 'Training', note: 'Operator training and service orientation', percent: 4 },
+	{ name: 'Contingency', note: 'Reserved for rate or freight movement', percent: 4 },
+];
+
+const trainingBudgetTemplate = [
+	{ name: 'Tuition and placement', note: 'Program fees and academic support', percent: 45 },
+	{ name: 'Travel and lodging', note: 'Required travel, housing, and meals', percent: 20 },
+	{ name: 'Clinical supervision', note: 'Rotation oversight and mentoring', percent: 16 },
+	{ name: 'Materials and licensing', note: 'Books, exams, and certification', percent: 9 },
+	{ name: 'Admin support', note: 'Coordination and reporting costs', percent: 5 },
+	{ name: 'Contingency', note: 'Reserved for schedule or fare changes', percent: 5 },
+];
+
+const urgentBudgetTemplate = [
+	{ name: 'Critical supplies', note: 'Immediate treatment and ward essentials', percent: 48 },
+	{ name: 'Emergency staffing', note: 'Short-term surge support', percent: 18 },
+	{ name: 'Transport and delivery', note: 'Rapid shipping and local movement', percent: 14 },
+	{ name: 'Monitoring and reporting', note: 'Field oversight and reconciliation', percent: 8 },
+	{ name: 'Partner coordination', note: 'Hospital logistics and procurement support', percent: 7 },
+	{ name: 'Contingency', note: 'Reserved for urgent market changes', percent: 5 },
+];
+
 export const totalActiveNeeds = 15;
 
 export const missionaryNeeds = [
@@ -56,7 +139,8 @@ export const missionaryNeeds = [
 		goal: 46000,
 		imageUrl:
 			'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=900&q=80&auto=format&fit=crop',
-		categories: ['urgent'],
+		category: 'urgent',
+		budgetTemplate: urgentBudgetTemplate,
 		urgentLabel: 'Urgent / 12d left',
 		daysLeft: 12,
 		listedAt: '2026-05-07',
@@ -72,7 +156,8 @@ export const missionaryNeeds = [
 		goal: 84000,
 		imageUrl:
 			'https://images.unsplash.com/photo-1503444200347-fa86187a2797?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-		categories: ['construction'],
+		category: 'construction',
+		budgetTemplate: constructionBudgetTemplate,
 		listedAt: '2026-04-19',
 	},
 	{
@@ -86,7 +171,8 @@ export const missionaryNeeds = [
 		goal: 215000,
 		imageUrl:
 			'https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=900&q=80&auto=format&fit=crop',
-		categories: ['construction'],
+		category: 'construction',
+		budgetTemplate: constructionBudgetTemplate,
 		listedAt: '2026-03-15',
 	},
 	{
@@ -100,7 +186,8 @@ export const missionaryNeeds = [
 		goal: 78000,
 		imageUrl:
 			'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80&auto=format&fit=crop',
-		categories: ['equipment'],
+		category: 'equipment',
+		budgetTemplate: equipmentBudgetTemplate,
 		listedAt: '2026-04-08',
 	},
 	{
@@ -114,7 +201,8 @@ export const missionaryNeeds = [
 		goal: 14200,
 		imageUrl:
 			'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=900&q=80&auto=format&fit=crop',
-		categories: ['equipment'],
+		category: 'equipment',
+		budgetTemplate: equipmentBudgetTemplate,
 		listedAt: '2026-02-28',
 	},
 	{
@@ -128,7 +216,8 @@ export const missionaryNeeds = [
 		goal: 34000,
 		imageUrl:
 			'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=900&q=80&auto=format&fit=crop',
-		categories: ['urgent', 'equipment'],
+		category: 'equipment',
+		budgetTemplate: equipmentBudgetTemplate,
 		urgentLabel: 'Urgent',
 		daysLeft: 18,
 		listedAt: '2026-05-01',
@@ -144,7 +233,8 @@ export const missionaryNeeds = [
 		goal: 30000,
 		imageUrl:
 			'https://images.unsplash.com/photo-1580281657527-47f249e8f4df?w=900&q=80&auto=format&fit=crop',
-		categories: ['training'],
+		category: 'training',
+		budgetTemplate: trainingBudgetTemplate,
 		listedAt: '2026-03-29',
 	},
 	{
@@ -158,7 +248,8 @@ export const missionaryNeeds = [
 		goal: 52000,
 		imageUrl:
 			'https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=900&q=80&auto=format&fit=crop',
-		categories: ['equipment'],
+		category: 'equipment',
+		budgetTemplate: equipmentBudgetTemplate,
 		listedAt: '2026-02-11',
 	},
 	{
@@ -172,7 +263,8 @@ export const missionaryNeeds = [
 		goal: 18000,
 		imageUrl:
 			'https://images.unsplash.com/photo-1612531385446-f7e6d131e1d0?w=900&q=80&auto=format&fit=crop',
-		categories: ['training'],
+		category: 'training',
+		budgetTemplate: trainingBudgetTemplate,
 		listedAt: '2026-03-02',
 	},
 	{
@@ -186,7 +278,8 @@ export const missionaryNeeds = [
 		goal: 124000,
 		imageUrl:
 			'https://media.istockphoto.com/id/2222386473/photo/female-doctor-smiling-and-holding-digital-tablet-in-hospital-lobby.jpg?s=1024x1024&w=is&k=20&c=V1HdeUjZRP_XjQoBb97Zyrx8CqGi1nuK1flQPhI-z-U=',
-		categories: ['construction'],
+		category: 'construction',
+		budgetTemplate: constructionBudgetTemplate,
 		listedAt: '2026-04-24',
 	},
 	{
@@ -200,7 +293,8 @@ export const missionaryNeeds = [
 		goal: 24000,
 		imageUrl:
 			'https://plus.unsplash.com/premium_photo-1673953509975-576678fa6710?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-		categories: ['training'],
+		category: 'training',
+		budgetTemplate: trainingBudgetTemplate,
 		listedAt: '2026-05-05',
 	},
 	{
@@ -214,7 +308,8 @@ export const missionaryNeeds = [
 		goal: 22000,
 		imageUrl:
 			'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80&auto=format&fit=crop',
-		categories: ['equipment'],
+		category: 'equipment',
+		budgetTemplate: equipmentBudgetTemplate,
 		listedAt: '2026-04-11',
 	},
 ];
@@ -247,3 +342,19 @@ export const footerColumns = [
 		],
 	},
 ];
+
+export function formatCurrency(value) {
+	return new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'USD',
+		maximumFractionDigits: 0,
+	}).format(value);
+}
+
+export function getNeedProgress(need) {
+	return Math.min(Math.round((need.raised / need.goal) * 100), 100);
+}
+
+export function getMissionaryNeedById(id) {
+	return missionaryNeeds.find((need) => need.id === id) ?? null;
+}

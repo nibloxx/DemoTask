@@ -10,7 +10,7 @@ function formatCurrency(value) {
 
 export default function NeedCard({ need }) {
   const progress = Math.min(Math.round((need.raised / need.goal) * 100), 100);
-  const isUrgent = need.categories.includes("urgent");
+  const isUrgent = Boolean(need.urgentLabel);
 
   return (
     <Link href={`/needs/${need.id}`} className="group block h-full">

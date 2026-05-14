@@ -1,9 +1,6 @@
 import { notFound } from "next/navigation";
 import NeedDetailPage from "@/components/need-detail/NeedDetailPage";
-import {
-  getMissionaryNeedById,
-  getMissionaryNeedDetail,
-} from "@/lib/missionary-need-detail";
+import { getMissionaryNeedById } from "@/lib/missionary-needs";
 
 export function generateMetadata({ params }) {
   const need = getMissionaryNeedById(params.id);
@@ -21,11 +18,11 @@ export function generateMetadata({ params }) {
 }
 
 export default function NeedDetailRoute({ params }) {
-  const detail = getMissionaryNeedDetail(params.id);
+  const need = getMissionaryNeedById(params.id);
 
-  if (!detail) {
+  if (!need) {
     notFound();
   }
 
-  return <NeedDetailPage detail={detail} />;
+  return <NeedDetailPage need={need} />;
 }

@@ -29,11 +29,11 @@ function getSortedNeeds(needs, sortBy) {
     case "most-urgent":
     default:
       return sortedNeeds.sort((firstNeed, secondNeed) => {
-        if (firstNeed.categories.includes("urgent") && !secondNeed.categories.includes("urgent")) {
+        if (firstNeed.urgentLabel && !secondNeed.urgentLabel) {
           return -1;
         }
 
-        if (!firstNeed.categories.includes("urgent") && secondNeed.categories.includes("urgent")) {
+        if (!firstNeed.urgentLabel && secondNeed.urgentLabel) {
           return 1;
         }
 
@@ -51,7 +51,11 @@ export default function MissionNeedsMainPage() {
     const filteredNeeds =
       activeCategory === "all"
         ? missionaryNeeds
-        : missionaryNeeds.filter((need) => need.categories.includes(activeCategory));
+        : missionaryNeeds.filter((need) =>
+            activeCategory === "urgent"
+              ? Boolean(need.urgentLabel)
+              : need.category === activeCategory
+          );
 
     return getSortedNeeds(filteredNeeds, sortBy);
   }, [activeCategory, sortBy]);
