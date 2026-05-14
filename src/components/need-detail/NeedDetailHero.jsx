@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import Container from '@/components/landing/Container';
 
@@ -41,12 +42,15 @@ export default function NeedDetailHero({ need }) {
 			</section>
 
 			<Container>
-				<div
-					className='aspect-[21/9] rounded-[18px] bg-hair bg-cover bg-center'
-					role='img'
-					aria-label={imageAlt}
-					style={{ backgroundImage: `url('${need.imageUrl}')` }}
-				/>
+				<div className='relative aspect-[21/9] overflow-hidden rounded-[18px] bg-hair'>
+					<Image
+						src={need.imageUrl}
+						alt={imageAlt}
+						fill
+						sizes='100vw'
+						className='object-cover'
+					/>
+				</div>
 			</Container>
 		</>
 	);

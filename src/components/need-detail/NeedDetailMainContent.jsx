@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { formatCurrency, getNeedProgress } from '@/lib/missionary-needs';
 import NeedDetailHospitalCard from './NeedDetailHospitalCard';
@@ -208,14 +209,15 @@ function Updates({ items }) {
 						</p>
 					))}
 					{update.photoUrl ? (
-						<div
-							className='my-4 aspect-[16/9] rounded-[10px] bg-hair bg-cover bg-center'
-							role='img'
-							aria-label={update.title}
-							style={{
-								backgroundImage: `url('${update.photoUrl}')`,
-							}}
-						/>
+						<div className='relative my-4 aspect-[16/9] overflow-hidden rounded-[10px] bg-hair'>
+							<Image
+								src={update.photoUrl}
+								alt={update.title}
+								fill
+								sizes='(min-width: 1024px) 50vw, 100vw'
+								className='object-cover'
+							/>
+						</div>
 					) : null}
 					<div className='mt-4 text-[14.5px] text-mute'>
 						-{' '}

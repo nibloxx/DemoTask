@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import Container from './Container';
 import { heroContent } from '@/lib/missionary-needs';
@@ -128,14 +129,15 @@ export default function HeroSection() {
 					</div>
 
 					<div className='relative overflow-hidden rounded-[26px] border border-hair bg-bone shadow-[0_24px_60px_rgba(67,57,46,0.08)]'>
-						<div
-							className='aspect-[4/4.6] bg-hair bg-cover bg-center md:aspect-[4/3.7] xl:aspect-[4/4.4]'
-							role='img'
-							aria-label={heroContent.imageAlt}
-							style={{
-								backgroundImage: `url('${heroContent.imageUrl}')`,
-							}}
-						/>
+						<div className='relative aspect-[4/4.6] bg-hair md:aspect-[4/3.7] xl:aspect-[4/4.4]'>
+							<Image
+								src={heroContent.imageUrl}
+								alt={heroContent.imageAlt}
+								fill
+								sizes='(min-width: 1280px) 42vw, (min-width: 768px) 50vw, 100vw'
+								className='object-cover'
+							/>
+						</div>
 						<div className='absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/45 via-ink/5 to-transparent p-5 md:p-6'>
 							<p className='font-mono text-[12px] uppercase tracking-[0.14em] text-paper/85'>
 								Mission hospital care

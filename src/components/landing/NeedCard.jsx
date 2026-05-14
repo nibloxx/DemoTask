@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 function formatCurrency(value) {
@@ -16,10 +17,14 @@ export default function NeedCard({ need }) {
     <Link href={`/needs/${need.id}`} className="group block h-full">
       <article className="flex h-full flex-col rounded-[20px] p-3 transition-all duration-500 hover:-translate-y-2 hover:bg-bone/70 hover:shadow-[0_22px_50px_rgba(67,57,46,0.10)]">
         <div className="overflow-hidden rounded-[14px]">
-          <div
-            className="relative mb-[18px] aspect-[4/3] overflow-hidden rounded-[14px] bg-hair bg-cover bg-center transition duration-500 ease-out group-hover:scale-[1.04] group-hover:brightness-[0.98]"
-            style={{ backgroundImage: `url('${need.imageUrl}')` }}
-          >
+          <div className="relative mb-[18px] aspect-[4/3] overflow-hidden rounded-[14px] bg-hair">
+            <Image
+              src={need.imageUrl}
+              alt={`${need.title} / ${need.hospital} / ${need.country}`}
+              fill
+              sizes="(min-width: 1280px) 26vw, (min-width: 768px) 33vw, 100vw"
+              className="object-cover transition duration-500 ease-out group-hover:scale-[1.04] group-hover:brightness-[0.98]"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
             {need.urgentLabel ? (
